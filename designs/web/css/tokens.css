@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Design tokens — mirrors design-tokens/tokens.json
+   ========================================================================== */
+
+:root {
+  /* Color — light (default) */
+  --color-paper: #FBFBFA;
+  --color-surface: #FFFFFF;
+  --color-surface-sunken: #F4F4F6;
+  --color-ink: #1C1D21;
+  --color-ink-secondary: #6B6D76;
+  --color-ink-tertiary: #9C9EA7;
+  --color-mist: #E7E7EA;
+  --color-mist-strong: #D6D7DC;
+  --color-cobalt: #3049B5;
+  --color-cobalt-hover: #28409A;
+  --color-cobalt-tint: #EAEDF9;
+  --color-signal-green: #35A26A;
+  --color-coral: #E5484D;
+  --color-coral-tint: #FBEAEA;
+  --color-amber: #B7791F;
+  --color-on-cobalt: #FFFFFF;
+
+  /* Type */
+  --font-ui: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  --text-display-size: 28px;   --text-display-weight: 600; --text-display-lh: 34px; --text-display-tracking: -0.3px;
+  --text-title-size: 20px;     --text-title-weight: 600;   --text-title-lh: 26px;   --text-title-tracking: -0.2px;
+  --text-subtitle-size: 16px;  --text-subtitle-weight: 600;--text-subtitle-lh: 22px;--text-subtitle-tracking: 0;
+  --text-body-size: 15px;      --text-body-weight: 400;    --text-body-lh: 21px;    --text-body-tracking: 0;
+  --text-body-strong-weight: 500;
+  --text-caption-size: 13px;   --text-caption-weight: 400; --text-caption-lh: 18px;
+  --text-mono-size: 11px;      --text-mono-weight: 500;    --text-mono-lh: 14px;    --text-mono-tracking: 0.2px;
+
+  /* Spacing */
+  --space-xs: 4px; --space-sm: 8px; --space-md: 12px; --space-lg: 16px;
+  --space-xl: 20px; --space-xxl: 24px; --space-xxxl: 32px; --space-huge: 48px;
+
+  /* Radius */
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-pill: 999px;
+  --radius-bubble-sent: 16px 16px 4px 16px;
+  --radius-bubble-received: 16px 16px 16px 4px;
+
+  /* Shadow */
+  --shadow-flat: 0 1px 0 rgba(28,29,33,0.04);
+  --shadow-raised: 0 8px 24px rgba(28,29,33,0.10);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.0, 0, 1);
+  --motion-fast: 120ms; --motion-base: 180ms; --motion-slow: 260ms;
+}
+
+/* Color — dark theme override */
+[data-theme="dark"] {
+  --color-paper: #111214;
+  --color-surface: #1A1B1E;
+  --color-surface-sunken: #0D0E10;
+  --color-ink: #F2F2F3;
+  --color-ink-secondary: #A6A8B1;
+  --color-ink-tertiary: #71737C;
+  --color-mist: #2A2B2F;
+  --color-mist-strong: #3A3C42;
+  --color-cobalt: #5A72E0;
+  --color-cobalt-hover: #6C82E8;
+  --color-cobalt-tint: #1E2440;
+  --color-signal-green: #41C384;
+  --color-coral: #F27075;
+  --color-coral-tint: #3A1F21;
+  --color-amber: #D6A03D;
+  --shadow-raised: 0 8px 24px rgba(0,0,0,0.45);
+}

@@ -1,0 +1,14 @@
+# Copy to key.properties (same folder) and fill in.
+# key.properties is git-ignored — NEVER commit it, and never commit the .jks file.
+#
+# Generate the keystore first:
+#   keytool -genkey -v -keystore C:/Users/yashp/keys/pulsechat-upload.jks \
+#           -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+#
+# Back up the .jks AND these passwords somewhere safe. If you lose them you can
+# never ship an update to anyone who already installed the app.
+
+storePassword=your-store-password
+keyPassword=your-key-password
+keyAlias=upload
+storeFile=C:/Users/yashp/keys/pulsechat-upload.jks

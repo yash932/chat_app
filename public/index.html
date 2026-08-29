@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PulseChat — Real-Time Messaging</title>
+  <meta name="description" content="Clean real-time messaging with photo/file sharing, groups, direct chats, and voice notes." />
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#3049B5" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body>
+
+  <!-- ============================= LOGIN SCREEN ============================= -->
+  <section id="screen-login" class="auth-screen screen">
+    <div class="auth-card">
+      <div class="auth-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="margin-top:12px;">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <h1 class="text-title auth-title">Welcome back</h1>
+      <p class="auth-subtitle">Log in to keep the conversation going.</p>
+      <form class="auth-form" id="login-form" onsubmit="return false;">
+        <div class="field">
+          <label for="login-email">Email or Username</label>
+          <input id="login-email" type="text" placeholder="you@example.com" required autocomplete="username" />
+        </div>
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+        <div id="login-error" style="color:var(--color-coral);font-size:13px;margin-bottom:12px;display:none;"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="login-btn">Log in</button>
+      </form>
+      <p class="auth-footer">Don't have an account? <a href="#" id="go-to-signup">Sign up</a></p>
+    </div>
+  </section>
+
+  <!-- ============================= SIGNUP SCREEN ============================= -->
+  <section id="screen-signup" class="auth-screen screen" style="display:none;">
+    <div class="auth-card">
+      <div class="auth-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="margin-top:12px;">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <h1 class="text-title auth-title">Create your account</h1>
+      <p class="auth-subtitle">Join PulseChat and connect in real-time.</p>
+      <form class="auth-form" id="signup-form" onsubmit="return false;">
+        <div class="field">
+          <label for="signup-name">Full Name</label>
+          <input id="signup-name" type="text" placeholder="Jordan Lee" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" type="email" placeholder="you@example.com" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="signup-password">Password</label>
+          <input id="signup-password" type="password" placeholder="At least 6 characters" required autocomplete="new-password" />
+        </div>
+        <div id="signup-error" style="color:var(--color-coral);font-size:13px;margin-bottom:12px;display:none;"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="signup-btn">Create account</button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="#" id="go-to-login">Log in</a></p>
+    </div>
+  </section>
+
+  <!-- ============================= MAIN APP SHELL ============================= -->
+  <div id="screen-app" class="app-shell mode-chats" style="display:none;">
+
+    <!-- Left Nav Rail -->
+    <nav class="rail">
+      <div class="rail-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+
+      <div class="rail-nav">
+        <button class="rail-btn active" data-mode="chats" title="Chats" aria-label="Chats">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </button>
+        <button class="rail-btn" data-mode="contacts" title="Members" aria-label="Members">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </button>
+        <button class="rail-btn" data-mode="settings" title="Settings" aria-label="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+
+      <button class="rail-btn" data-mode="profile" title="Profile" aria-label="Profile">
+        <div class="avatar avatar-sm" id="rail-user-avatar">JL</div>
+      </button>
+    </nav>
+
+    <!-- Conversation list pane -->
+    <div class="list-pane">
+      
+      <!-- PROMINENT ACTIVE USER BANNER -->
+      <div style="padding: 16px 16px 12px; background: var(--color-surface); border-bottom: 1px solid var(--color-mist); display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+          <div class="avatar avatar-md" id="header-user-avatar" style="background:var(--color-cobalt); color:#fff; cursor:pointer;">
+            JL
+            <span class="status-dot online"></span>
+          </div>
+          <div style="min-width: 0;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--color-ink-tertiary); text-transform: uppercase; letter-spacing: 0.4px;">Logged in as</div>
+            <div id="header-user-name" style="font-size: 15px; font-weight: 700; color: var(--color-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Jordan Lee</div>
+            <div id="header-user-status" style="font-size: 12px; color: var(--color-signal-green); font-weight: 500;">● Online</div>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-icon" title="Log Out" style="color:var(--color-coral);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
+      </div>
+
+      <div class="list-header" style="padding-top: 14px;">
+        <h1 class="text-title" style="font-size: 18px;">Conversations</h1>
+        <button id="new-group-btn" class="btn btn-secondary btn-ghost" style="font-size: 12.5px; height: 32px; gap: 4px;" title="Create Group">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          New Group
+        </button>
+      </div>
+
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="filter-search-input" placeholder="Search direct chats & groups" />
+      </div>
+
+      <div class="conversation-list" id="conversation-list">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+
+    <!-- Active Conversation Chat Pane -->
+    <div class="chat-pane" id="chat-pane">
+      
+      <!-- Topbar -->
+      <div class="chat-topbar">
+        <button class="btn-icon back-btn" id="chat-back-btn" aria-label="Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="avatar avatar-md" id="chat-header-avatar">
+          💬
+          <span class="status-dot online" id="chat-header-status-dot"></span>
+        </div>
+        <div>
+          <div class="chat-topbar-name" id="chat-header-name">Select a conversation</div>
+          <div class="chat-topbar-status" id="chat-header-status">Direct message or group chat</div>
+        </div>
+        <div class="chat-topbar-actions">
+          <button class="btn-icon" id="theme-quick-toggle" title="Toggle Dark/Light">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Stream (Clean, natural scrolling without jump effects) -->
+      <div class="message-stream" id="message-stream" style="scroll-behavior: auto; overflow-y: auto;">
+        <!-- Messages rendered dynamically -->
+      </div>
+
+      <!-- Pending Attachments Shelf -->
+      <div id="pending-shelf" class="pending-shelf hidden">
+        <!-- Upload previews -->
+      </div>
+
+      <!-- Chat Input Bar -->
+      <div class="chat-input-bar">
+        <input type="file" id="file-input" multiple style="display:none;" />
+        <button class="btn-icon" id="attach-btn" title="Attach file or photo">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        </button>
+        <textarea id="chat-input" rows="1" placeholder="Write a message…"></textarea>
+        <button class="send-btn" id="send-btn" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Center Pane: Profile Screen -->
+    <div class="center-pane for-profile" id="center-pane-profile">
+      <div class="profile-screen">
+        <div class="profile-header">
+          <div class="avatar avatar-lg" id="profile-avatar-display">
+            JL
+            <span class="status-dot online" style="width:16px;height:16px;right:2px;bottom:2px;"></span>
+          </div>
+          <h1 class="text-title profile-name" id="profile-display-name">Jordan Lee</h1>
+          <div class="profile-handle" id="profile-display-status">@jordanlee · Active</div>
+        </div>
+
+        <div class="profile-section-label">Account Information</div>
+        <div class="profile-card">
+          <div class="setting-row">
+            <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="setting-row-text">
+              <div class="setting-row-title">Full Name</div>
+              <input type="text" id="edit-profile-name" style="border:none;background:transparent;width:100%;font-weight:600;outline:none;font-size:13px;color:var(--color-ink);" />
+            </div>
+          </div>
+          <div class="setting-row">
+            <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg></div>
+            <div class="setting-row-text">
+              <div class="setting-row-title">Custom Status</div>
+              <input type="text" id="edit-profile-status" style="border:none;background:transparent;width:100%;outline:none;font-size:13px;color:var(--color-ink-secondary);" />
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; display:flex; gap:10px;">
+          <button class="btn btn-primary btn-block" id="save-profile-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Pane: Settings Screen -->
+    <div class="center-pane for-settings" id="center-pane-settings">
+      <div class="settings-screen">
+        <h1 class="text-title" style="margin-bottom: var(--space-xxl);">Settings</h1>
+
+        <div class="profile-section-label">Appearance</div>
+        <div class="profile-card">
+          <div class="setting-row">
+            <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+            <div class="setting-row-text">
+              <div class="setting-row-title">Dark mode</div>
+              <div class="setting-row-desc">Switch between light and dark palette</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="dark-mode-toggle" />
+              <span class="switch-track"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+            <div class="setting-row-text">
+              <div class="setting-row-title">Message sounds</div>
+              <div class="setting-row-desc">Play audio chimes on new messages</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="sounds-toggle" checked />
+              <span class="switch-track"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Pane: Members Screen -->
+    <div class="center-pane for-contacts" id="center-pane-contacts">
+      <div class="settings-screen">
+        <h1 class="text-title" style="margin-bottom: var(--space-xxl);">Members & Contacts</h1>
+        <div class="profile-card" id="active-members-list-pane">
+          <!-- Active users injected here -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal hidden">
+    <div class="lightbox-topbar">
+      <span id="lightbox-title" class="mono">photo.png</span>
+      <button class="btn btn-ghost" style="color:#fff;" id="lightbox-close">&times;</button>
+    </div>
+    <div class="lightbox-stage">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="preview" />
+    </div>
+  </div>
+
+  <!-- Create Group Dialog -->
+  <div id="create-group-modal" class="app-modal hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="text-subtitle">Create New Group</h3>
+        <button class="btn-icon" id="close-group-modal">&times;</button>
+      </div>
+      <form id="create-group-form" onsubmit="return false;">
+        <div class="field">
+          <label>Group Name</label>
+          <input type="text" id="new-group-name" placeholder="e.g. Design Team" required />
+        </div>
+        <div class="field">
+          <label>Topic / Description</label>
+          <input type="text" id="new-group-desc" placeholder="What is this group for?" />
+        </div>
+        <div class="field">
+          <label>Select Members</label>
+          <div id="group-members-picker" style="max-height: 140px; overflow-y: auto; border: 1px solid var(--color-mist); border-radius: var(--radius-sm); padding: 8px;">
+            <!-- Checkboxes injected dynamically -->
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="submit-group-btn">Create Group</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Socket.IO & Application Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/media.js"></script>
+  <script src="/js/chat.js"></script>
+  <script src="/js/socket.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

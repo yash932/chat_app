@@ -1,0 +1,3 @@
+# Not needed by the server — keeps deploy uploads small and fast
+mobile/
+designs/

@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Runtime data — lives on the Railway volume in production, never deployed
+chat_data.db
+chat_data.db-journal
+chat_data.db-wal
+chat_data.db-shm
+uploads/
+
+# Environment
+.env
+.env.*
+*.log
+
+# Flutter / mobile build output
+mobile/build/
+mobile/.dart_tool/
+mobile/.flutter-plugins-dependencies
+mobile/android/.gradle/
+mobile/ios/Pods/
+
+# Signing secrets — never commit these
+mobile/android/key.properties
+*.jks
+*.keystore
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

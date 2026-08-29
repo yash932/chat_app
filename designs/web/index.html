@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chat UI Kit — Demo</title>
+<link rel="stylesheet" href="css/tokens.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+<!-- ============================= LOGIN ============================= -->
+<section id="screen-login" class="auth-screen screen">
+  <div class="auth-card">
+    <div class="auth-mark"></div>
+    <h1 class="text-title auth-title">Welcome back</h1>
+    <p class="auth-subtitle">Log in to keep the conversation going.</p>
+    <form class="auth-form" onsubmit="return false;">
+      <div class="field">
+        <label for="login-email">Email</label>
+        <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn btn-primary btn-block" data-nav="app">Log in</button>
+    </form>
+    <p class="auth-footer">Don't have an account? <a href="#" data-nav="signup">Sign up</a></p>
+  </div>
+</section>
+
+<!-- ============================= SIGNUP ============================= -->
+<section id="screen-signup" class="auth-screen screen" style="display:none;">
+  <div class="auth-card">
+    <div class="auth-mark"></div>
+    <h1 class="text-title auth-title">Create your account</h1>
+    <p class="auth-subtitle">It takes less than a minute.</p>
+    <form class="auth-form" onsubmit="return false;">
+      <div class="field">
+        <label for="signup-name">Full name</label>
+        <input id="signup-name" type="text" placeholder="Jordan Lee" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="signup-email">Email</label>
+        <input id="signup-email" type="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="signup-password">Password</label>
+        <input id="signup-password" type="password" placeholder="At least 8 characters" autocomplete="new-password" />
+      </div>
+      <button class="btn btn-primary btn-block" data-nav="app">Create account</button>
+    </form>
+    <p class="auth-footer">Already have an account? <a href="#" data-nav="login">Log in</a></p>
+  </div>
+</section>
+
+<!-- ============================= MAIN APP ============================= -->
+<section id="screen-app" class="screen app-shell mode-chats" style="display:none;">
+
+  <!-- Nav rail -->
+  <nav class="rail">
+    <div class="rail-logo"></div>
+    <div class="rail-nav">
+      <button class="rail-btn active" data-mode="chats" title="Chats" aria-label="Chats">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </button>
+      <button class="rail-btn" title="Contacts" aria-label="Contacts">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </button>
+      <button class="rail-btn" data-mode="settings" title="Settings" aria-label="Settings">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+    <button class="rail-btn" data-mode="profile" title="Profile" aria-label="Profile">
+      <div class="avatar avatar-sm" style="background:var(--color-cobalt);color:#fff;">JL</div>
+    </button>
+  </nav>
+
+  <!-- Conversation list -->
+  <div class="list-pane">
+    <div class="list-header">
+      <h1 class="text-title">Chats</h1>
+    </div>
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" placeholder="Search conversations" />
+    </div>
+    <div class="conversation-list" id="conversation-list">
+      <!-- items injected by app.js -->
+    </div>
+  </div>
+
+  <!-- Chat pane -->
+  <div class="chat-pane">
+    <div class="chat-topbar">
+      <button class="btn-icon back-btn" data-nav-back="list" aria-label="Back">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="avatar avatar-md" style="background:#F1E4D8;color:#8A5A2B;">
+        RM
+        <span class="status-dot online"></span>
+      </div>
+      <div>
+        <div class="chat-topbar-name">Riya Mehta</div>
+        <div class="chat-topbar-status">Online</div>
+      </div>
+      <div class="chat-topbar-actions">
+        <button class="btn-icon" aria-label="Call"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+        <button class="btn-icon" aria-label="More"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></svg></button>
+      </div>
+    </div>
+
+    <div class="message-stream" id="message-stream">
+      <!-- messages injected by app.js -->
+    </div>
+
+    <div class="chat-input-bar">
+      <button class="btn-icon" aria-label="Attach file">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+      </button>
+      <textarea id="chat-input" rows="1" placeholder="Write a message…"></textarea>
+      <button class="send-btn" id="send-btn" aria-label="Send message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Profile (center pane, shown in mode-profile) -->
+  <div class="center-pane for-profile">
+    <div class="profile-screen">
+      <div class="profile-header">
+        <div class="avatar avatar-lg" style="background:var(--color-cobalt);color:#fff;">
+          JL
+          <span class="status-dot online" style="width:16px;height:16px;right:2px;bottom:2px;"></span>
+        </div>
+        <h1 class="text-title profile-name">Jordan Lee</h1>
+        <div class="profile-handle">@jordanlee · Product designer</div>
+      </div>
+
+      <div class="profile-section-label">Account</div>
+      <div class="profile-card">
+        <div class="setting-row">
+          <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></div>
+          <div class="setting-row-text">
+            <div class="setting-row-title">Email</div>
+            <div class="setting-row-desc">jordan.lee@example.com</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="setting-row-text">
+            <div class="setting-row-title">Phone</div>
+            <div class="setting-row-desc">+91 98765 43210</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section-label">More</div>
+      <div class="profile-card">
+        <button class="setting-row" style="width:100%;background:none;border:none;text-align:left;" data-mode="settings">
+          <div class="setting-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82"/></svg></div>
+          <div class="setting-row-text"><div class="setting-row-title">Settings</div></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings (center pane, shown in mode-settings) -->
+  <div class="center-pane for-settings">
+    <div class="settings-screen">
+      <h1 class="text-title" style="margin-bottom: var(--space-xxl);">Settings</h1>
+
+      <div class="profile-section-label" style="margin-top:0;">Notifications</div>
+      <div class="profile-card">
+        <div class="setting-row">
+          <div class="setting-row-text">
+            <div class="setting-row-title">Push notifications</div>
+            <div class="setting-row-desc">Get notified about new messages</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="switch-track"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <div class="setting-row-text">
+            <div class="setting-row-title">Message sound</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="switch-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="profile-section-label">Privacy</div>
+      <div class="profile-card">
+        <div class="setting-row">
+          <div class="setting-row-text">
+            <div class="setting-row-title">Read receipts</div>
+            <div class="setting-row-desc">Let others see when you've read their message</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" checked />
+            <span class="switch-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="profile-section-label">Appearance</div>
+      <div class="profile-card">
+        <div class="setting-row">
+          <div class="setting-row-text">
+            <div class="setting-row-title">Dark mode</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle" />
+            <span class="switch-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="profile-section-label">Session</div>
+      <div class="profile-card">
+        <button class="btn btn-danger btn-block" data-nav="login" style="border-radius:0;height:52px;">Log out</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>

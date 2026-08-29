@@ -1,0 +1,144 @@
+/* ==========================================================================
+   PulseChat Design System & Theme Tokens
+   ========================================================================== */
+
+:root {
+  /* Fonts */
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transitions */
+  --trans-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-spring: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.28);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+}
+
+/* --------------------------------------------------------------------------
+   DARK THEME (Default)
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --bg-app: #0d1117;
+  --bg-sidebar: #131822;
+  --bg-card: rgba(26, 33, 46, 0.7);
+  --bg-card-hover: rgba(36, 45, 62, 0.85);
+  --bg-card-active: rgba(45, 56, 78, 0.95);
+  --bg-input: rgba(18, 24, 35, 0.85);
+  --bg-glass: rgba(19, 24, 34, 0.75);
+  --bg-glass-heavy: rgba(13, 17, 23, 0.92);
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-active: rgba(99, 102, 241, 0.6);
+  
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-inverse: #0f172a;
+  
+  --accent-primary: #6366f1;
+  --accent-primary-hover: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.35);
+  
+  --msg-self-bg: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  --msg-self-text: #ffffff;
+  --msg-other-bg: rgba(30, 39, 54, 0.75);
+  --msg-other-text: #f1f5f9;
+  
+  --status-online: #10b981;
+  --status-away: #f59e0b;
+  --status-busy: #ef4444;
+  --status-offline: #64748b;
+  
+  --glass-blur: blur(16px);
+}
+
+/* --------------------------------------------------------------------------
+   MIDNIGHT CYBERPUNK THEME
+   -------------------------------------------------------------------------- */
+[data-theme="midnight"] {
+  --bg-app: #060814;
+  --bg-sidebar: #0a0d1e;
+  --bg-card: rgba(18, 22, 48, 0.75);
+  --bg-card-hover: rgba(28, 34, 70, 0.9);
+  --bg-card-active: rgba(38, 46, 92, 0.95);
+  --bg-input: rgba(10, 13, 30, 0.9);
+  --bg-glass: rgba(10, 13, 30, 0.8);
+  --bg-glass-heavy: rgba(6, 8, 20, 0.94);
+  
+  --border-subtle: rgba(147, 51, 234, 0.18);
+  --border-medium: rgba(236, 72, 153, 0.25);
+  --border-active: rgba(236, 72, 153, 0.8);
+  
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-dim: #707e94;
+  --text-inverse: #020617;
+  
+  --accent-primary: #ec4899;
+  --accent-primary-hover: #db2777;
+  --accent-glow: rgba(236, 72, 153, 0.45);
+  
+  --msg-self-bg: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  --msg-self-text: #ffffff;
+  --msg-other-bg: rgba(22, 28, 58, 0.85);
+  --msg-other-text: #f8fafc;
+  
+  --status-online: #06b6d4;
+  --status-away: #f59e0b;
+  --status-busy: #f43f5e;
+  --status-offline: #475569;
+  
+  --glass-blur: blur(20px);
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT GLASS THEME
+   -------------------------------------------------------------------------- */
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --bg-sidebar: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-hover: rgba(241, 245, 249, 0.95);
+  --bg-card-active: #e2e8f0;
+  --bg-input: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  --bg-glass-heavy: rgba(248, 250, 252, 0.95);
+  
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.14);
+  --border-active: rgba(99, 102, 241, 0.8);
+  
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #94a3b8;
+  --text-inverse: #ffffff;
+  
+  --accent-primary: #4f46e5;
+  --accent-primary-hover: #4338ca;
+  --accent-glow: rgba(79, 70, 229, 0.25);
+  
+  --msg-self-bg: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  --msg-self-text: #ffffff;
+  --msg-other-bg: #ffffff;
+  --msg-other-text: #0f172a;
+  
+  --status-online: #10b981;
+  --status-away: #f59e0b;
+  --status-busy: #ef4444;
+  --status-offline: #94a3b8;
+  
+  --glass-blur: blur(16px);
+}
