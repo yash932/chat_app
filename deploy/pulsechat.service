@@ -1,0 +1,24 @@
+[Unit]
+Description=PulseChat server
+After=network.target
+
+[Service]
+Type=simple
+User=pulsechat
+Group=pulsechat
+WorkingDirectory=/opt/pulsechat/app
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=3
+Environment=NODE_ENV=production
+Environment=DATA_DIR=/data
+# PORT is left unset — server.js defaults to 3000, and Caddy proxies to it.
+
+# Light sandboxing — the process only needs its own code dir + /data
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/data
+
+[Install]
+WantedBy=multi-user.target

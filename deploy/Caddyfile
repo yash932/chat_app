@@ -1,0 +1,4 @@
+# Replace chatyy.in with your actual domain if different.
+chatyy.in {
+	reverse_proxy localhost:3000
+}
